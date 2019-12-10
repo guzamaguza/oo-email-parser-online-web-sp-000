@@ -4,7 +4,17 @@
 # or whitespace (' ').
 
 class EmailParser(email_addresses)
-  def parser
-      email_addresses.parse
-  end
+  attr_accessor :name, :csv_emails
+
+  def initialize(emails)
+    @emails = emails
+  end 
+
+  def parse 
+      csv_emails.split.collect do |address|
+        address.split(',') 
+      end
+      .flatten.uniq 
+  end 
+  
 end
